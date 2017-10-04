@@ -1,0 +1,47 @@
+<html>
+<body>
+	<!-- GET'i deniyorsan method kısmını get, action kısmını da ilgili servletin url adresini yap!!! -->
+	<!-- burayı get, servleti post yaparsan "HTTP Status 405 - HTTP method GET is not supported by this URL" i yersin. Dikkat et! -->
+	<!-- burayı post, servleti get yaparsan "HTTP Status 405 - HTTP method POST is not supported by this URL" i de yersin. Dikkat! -->
+	<!--action ilgili servlet ile eşleşmezse "HTTP Status 404" ü yersin. Dikkat et! -->
+	<form id="form1" action="RequestPostDeneme" method="post">
+		<div></div>
+		<table id="table1" cellspacing="5px" cellpadding="5%";>
+			<tr>
+				<td align="right">Kullanici adiniz:</td>
+				<td><input type="text" name="Name" /></td>
+			</tr>
+
+			<tr>
+				<td align="right">Cinsiyetiniz: </td>
+				<td><select name="gender">
+						<option value="Bay" selected="selected">Erkek</option>
+						<option value="Bayan">Kadin</option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td align="right">Stadyum ismi: </td>
+				<td><input type="radio" name="gaziantep sports"
+					value="Kalyon Stadyum" />Kalyon Stadyumu <input type="radio"
+					name="gaziantep sports" value="Gaziantep Stadyumu" />Gaziantep
+					Stadyumu <input type="radio" name="gaziantep sports"
+					value="Kamil Ocak Stadyumu" />Kamil Ocak Stadyumu</td>
+			</tr>
+
+			<tr>
+				<td align="right">Desteklediginiz Takimlar</td>
+				<td><input type="checkbox" name="takim" value="Gaziantepspor" />
+					Gaziantepspor <input type="checkbox" name="takim"
+					value="Gazişehir FK" />Gazisehir FK <input type="checkbox"
+					name="takim" value="Gaziantep Basketbol" />Gaziantep Basketbol <input
+					type="checkbox" name="takim" value="Diger Branslar" />Diger
+					Branslar</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Submit" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

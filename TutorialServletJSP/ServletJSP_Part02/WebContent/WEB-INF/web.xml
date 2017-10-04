@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>ServletJSP_Part02</display-name>
+
+	<!--ServletContext -->
+	<context-param>
+		<description>Tüm servletlerden bana yürüyebilirsin.</description>
+		<param-name>denemeContext</param-name>
+		<param-value>Context Olarak Döndüm.</param-value>
+	</context-param>
+
+
+	<servlet>
+		<servlet-name>ServletConfigDeneme</servlet-name>
+		<servlet-class>_02servletconfig.ConfigServlet</servlet-class>
+		<!-- İlgili Servlete aittir. -->
+		<init-param>
+			<param-name>kullanici</param-name>
+			<param-value>vayorebl</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>sifre</param-name>
+			<param-value>272727</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ServletConfigDeneme</servlet-name>
+		<url-pattern>/configdeneme</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ContextDeneme</servlet-name>
+		<servlet-class>_03servletcontext.ContextServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ContextDeneme</servlet-name>
+		<url-pattern>/ContextDene</url-pattern>
+	</servlet-mapping>
+</web-app>
