@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome AJAX</title>
+</head>
+<body>
+
+	<!-- prefendId, false oldugundan kendisi id vermeyecek. idleri ben elle girdim.  -->
+	<h:form prependId="false">
+		<h3>lütfen isminizi ve sifrenizi giriniz.</h3>
+
+		<table>
+			<tr>
+				<td>Name</td>
+				<td><h:inputText value="#{helloAjaxBean.name}" id="nameId"></h:inputText>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Password</td>
+				<td><h:inputSecret value="#{helloAjaxBean.password}"
+						id="passwordId"></h:inputSecret></td>
+			</tr>
+		</table>
+		<p>
+
+
+			<h:commandButton value="giris">
+				<!--  bunu kullanmak için xmlns ekliyoruz. -->
+				<f:ajax execute="nameId" render="out"></f:ajax>
+				<!--  ajax isteginde nameId id alanını gonderiyorum. 
+				Bu durumda commandButton’a tiklandiginda setName metodu calisacaktir. -->
+				<!--  aynı anda farklı id de gönderebiliriz. execute="nameId passwordId" arada bosluk olacak. 
+				-->
+			</h:commandButton>
+		</p>
+		<h3>
+			<h:outputText id="out" value="#{helloAjaxBean.greeting}"></h:outputText>
+			<!--  bunun adı greeting ise getGreeting metodu olması gerek.
+her render sonrası bu ksım calisir. -->
+		</h3>
+	</h:form>
+</body>
+</html>

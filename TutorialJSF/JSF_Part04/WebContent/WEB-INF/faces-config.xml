@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<!-- dynamic navigation: -->
+
+	<navigation-rule>
+		<from-view-id>/02DynamicNavigation/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/02DynamicNavigation/welcome.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>failure</from-outcome>
+			<to-view-id>/02DynamicNavigation/relogin.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>locked</from-outcome>
+			<to-view-id>/02DynamicNavigation/locked.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/02DynamicNavigation/relogin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>locked</from-outcome>
+			<to-view-id>/02DynamicNavigation/locked.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>retry</from-outcome>
+			<to-view-id>/02DynamicNavigation/login.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+
+	<!-- condional navigation -->
+
+	<navigation-rule>
+		<from-view-id>/02DynamicNavigation/conditional/conditional.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>testOutcome</from-outcome>
+			<if>#{conditionalNavigationBean.property1=='page1'}</if>
+			<to-view-id>/02DynamicNavigation/conditional/page1.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>testOutcome</from-outcome>
+			<if>#{conditionalNavigationBean.property1=='page2'}</if>
+			<to-view-id>/02DynamicNavigation/conditional/page2.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>testOutcome</from-outcome>
+			<if>#{conditionalNavigationBean.property1=='page3' and conditionalNavigationBean.property2==10}</if>
+			<to-view-id>/02DynamicNavigation/conditional/page3.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+	<!-- from action navigation -->
+
+	<navigation-rule>
+		<from-view-id>02DynamicNavigation/fromaction/fromaction.xhtml</from-view-id>
+		<navigation-case>
+			<!-- hangi metotdan geldigine bakıyoruz. -->
+			<from-action>#{fromActionNavigationBean.navigate1}</from-action>
+			<from-outcome>navigate</from-outcome>
+			<to-view-id>02DynamicNavigation/fromaction/page1.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{fromActionNavigationBean.navigate2}</from-action>
+			<from-outcome>navigate</from-outcome>
+			<to-view-id>02DynamicNavigation/fromaction/page2.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

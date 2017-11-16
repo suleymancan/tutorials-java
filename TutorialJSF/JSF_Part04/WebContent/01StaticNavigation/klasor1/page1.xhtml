@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Static Navigation</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h3>Static navigasyon</h3>
+
+		<!-- aynı dizinde oldug icin action kısmında xhtml'i kendisi ekliyor. -->
+		<p>
+			<h:commandButton value="page2" action="page2"></h:commandButton>
+		</p>
+
+		<!-- action kısmına yazdigimiz metot ile bir cagirma yapabiliyoruz.
+biz baska bir ornek olarak bu metot yardımıyla yonlendirmede id gonderip datayı silebiliriz,
+yeni kayıt ekleyebiliriz bu tür farklı actionlar yapılabilir. -->
+		<p>
+			<h:commandButton value="page3" action="#{navigationBean.goToPage3}"></h:commandButton>
+		</p>
+
+		<!-- redirect yaptigimizda link degisiyor. -->
+		<p>
+			<h:commandButton value="page4" action="page4?faces-redirect=true"></h:commandButton>
+		</p>
+
+		<!-- yonlendirme yapacagımız sayfa baska bir dizindeyse xhtml'i mutlaka eklemeliyiz ve bir absolute path(yol) gostermeliyiz.
+absolute path web content altını baz alır. -->
+		<p>
+			<h:commandButton value="page5"
+				action="/01StaticNavigation/klasor2/page5.xhtml"></h:commandButton>
+		</p>
+
+		<p>
+			<h:commandButton value="page5 redirect"
+				action="/01StaticNavigation/klasor2/page5.xhtml?faces-redirect=true"></h:commandButton>
+		</p>
+
+	</h:form>
+</h:body>
+</html>

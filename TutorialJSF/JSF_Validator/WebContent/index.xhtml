@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>#{msgs.title}</title>
+</h:head>
+<h:body>
+
+	<!-- jsf'in validator ve convertor desteği vardır. f taglarını kullanarak validasyon ve converter sağlayabiliriz.  -->
+
+	<h:form>
+		<h:commandButton action="#{localeBean.setLanguage('en')}"
+			value="English" image="resources/images/EN.png"></h:commandButton>
+		<h:commandButton action="#{localeBean.setLanguage('tr')}"
+			value="
+			Turkish" image="resources/images/TR.png"></h:commandButton>
+
+	</h:form>
+
+	<h:form>
+		<!--  <h:message tagi kullanılır. -->
+
+		<!-- msgs olanlar properties dosyasından geliyor. (src/main.resources/messageFile) bunun ayarı faces-config.xml'de.
+	bu mesajlar çoklu dil desteği için properties dosyasında key=value şeklinde tutulmaktadır. -->
+
+		<h1>#{msgs.enterPayment}</h1>
+		<h:panelGrid columns="3">
+		
+	#{msgs.cardHolderName}
+	<h:inputText id="cardHolderName" label="#{msgs.cardHolderName}"
+				value="#{payment.cardHolderName}" required="true"></h:inputText>
+
+			<h:message for="cardHolderName" styleClass="errorMessage"></h:message>
+			<!-- required="true" bos bıraktıgımızda hata vericektir.
+inputtext ile message arasına yorum yazınca, düzen bozuluyor. -->
+	#{msgs.amount}
+	<h:inputText id="amount" label="#{msgs.amount}"
+				value="#{payment.amount}">
+				<f:convertNumber minFractionDigits="2" type="number"></f:convertNumber>
+				<!-- minFractionDigits sonuna 2 tane 0 ekler. -->
+				<f:validateDoubleRange minimum="1.5" maximum="10000"></f:validateDoubleRange>
+				<!-- validateDoubleRange belli bir alalıkta değer almamızı saglar. -->
+			</h:inputText>
+			<h:message for="amount" styleClass="errorMessage"></h:message>
+	
+	#{msgs.creditCard}
+	<h:inputText id="creditCard" label="#{msgs.creditCard}"
+				value="#{payment.creditCard}" required="true">
+				<f:validateLength minimum="13"></f:validateLength>
+				<!-- valdateLength, en az girilebilecek karakter sayısını belirtir. -->
+			</h:inputText>
+			<h:message for="creditCard" styleClass="errorMessage" />
+			
+
+				
+				#{msgs.cvv}
+				<h:inputText id="cvv" label="#{msgs.cvv}" value="#{payment.cvv}">
+				<f:validateRequired for="cvv">
+					<!-- validateRequied, zorunlu anlamındadır. required="true" ile de saglanabilir.  -->
+				</f:validateRequired>
+
+			</h:inputText>
+			<h:message for="cvv" styleClass="errorMessage"></h:message>
+			
+			#{msgs.expirationDate}
+			<h:inputText id="date" label="#{msgs.expirationDate}"
+				value="#{payment.date}">
+				<f:convertDateTime pattern="MM/yyyy"></f:convertDateTime>
+				<!-- pattern ile girilen tarihi formatlıyoruz. -->
+
+			</h:inputText>
+			<h:message for="date" styleClass="errorMessage"></h:message>
+
+		</h:panelGrid>
+
+		<h:commandButton value="#{msgs.process}" action="result"></h:commandButton>
+	</h:form>
+
+
+</h:body>
+</html>
