@@ -23,7 +23,7 @@ public class ConnectionManager {
 		InputStream is=getClass().getClassLoader().getResourceAsStream("db.properties");
 		//okuyacağımız datalar yardımıyla mysqldatasource oluşturabiliyoruz.
 		//farklı şekillerde de veritabanına bağlanmak mümkündür.
-		MysqlDataSource mySQLDataSource=null;
+		mySQLDataSource mySQLDataSource=null;
 		
 		try {
 			props.load(is);

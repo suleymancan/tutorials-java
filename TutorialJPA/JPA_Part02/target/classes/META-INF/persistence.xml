@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<!-- burada yaptıgımız isler PersistenceUnit -->
+	<!-- transaction type olarak global olacaksa JTA filan da (java ee'nin bir 
+		bolumu.) kullanılır. (İleri seviyeler için) -->
+	<persistence-unit name="EmployeePersistenceUnit"
+		transaction-type="RESOURCE_LOCAL">
+
+		<!-- ilgili entity class'ın path'i -->
+		<class>model.Employee</class>
+		<class>model.Department</class>
+		<class>model.ParkingSpace</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<!-- jpa adında dbeaver veritabanı programında bir database olusturdum.(jpa, 
+				adını buraya yazdim.) tablo olusturmadım. -->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/jpa?serverTimezone=UTC" />
+			<!-- mysql'e baglanmak icin gerekli ayarlamalar. -->
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="2327" />
+			<!-- örnek olması acisindan her seferinde tablo silinip yeniden oluşacak. 
+				(eclipselink ddl generation) olarak aratıp farklı seçenekler bulabiliriz. -->
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<!-- http://www.eclipse.org/eclipselink/api/2.6/org/eclipse/persistence/config/PersistenceUnitProperties.html -->
+			<!-- eclipselink.ddl-generation -->
+
+		</properties>
+
+	</persistence-unit>
+	
+	
+	
+	<persistence-unit name="EmployeePersistenceUnitForHibernate"
+		transaction-type="RESOURCE_LOCAL">
+		
+		<!-- hibernate icin ozellikle belirtmemiz gerekmektedir. -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!--  eclipse link'teki <class> tagini burada kullanmıyoruz. -->
+		
+		<properties>	
+							
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa?serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="2327" />										
+				 
+		 <!-- javax.persistence.jdbc... property'lerini Hibernate icin de problemsiz sekilde kulanabiliriz. -->
+		 
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="hibernate.id.new_generator_mappings" value="true"/>	
+					
+		
+		</properties>		
+	</persistence-unit>
+	
+
+</persistence>
