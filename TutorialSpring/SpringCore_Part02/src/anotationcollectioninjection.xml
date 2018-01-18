@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- spring-context ve spring-util taglarini eklemeliyiz. -->
+
+	<!-- bu tag ile spring'e ilgili pakette senin inject edebilecegin class'lar 
+		var diyoruz.(inject, autowired, controller, repository, component, service, 
+		value, resource vs.) birden fazla package icin araya virgül konulmalı. controller, 
+		component, controller, repository bu dördüne streo type adı verilir. spring 
+		bu annotationları ilgili class'ta bulur gerekli dependencyleri inject eder. -->
+	<context:component-scan base-package="_03collectioninjection_model" />
+
+
+	<util:list id="utilAnnotationList">
+		<value>element1</value>
+		<value>element2</value>
+	</util:list>
+
+
+
+	<util:map id="utilAnnotationMap">
+		<entry key="key1">
+			<value>100</value>
+		</entry>
+		<entry key="key2">
+			<value>200</value>
+		</entry>
+
+	</util:map>
+</beans> 
+

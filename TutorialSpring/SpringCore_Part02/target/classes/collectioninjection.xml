@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- aynı mantıkla array, set vs icin de yapılabilir. -->
+	<bean id="listModel1" class="_03collectioninjection_model.CollectionInjectionModel">
+		<property name="nameList">
+			<list>
+				<value>nazlisu</value>
+				<value>mehmetali</value>
+				<value>suleyman</value>
+			</list>
+		</property>
+		<!-- name'ler instance degiskenle aynı olacak. -->
+		<property name="studentList">
+			<list>
+				<bean class="_03collectioninjection_model.Student">
+					<property name="name" value="Suleyman"></property>
+					<property name="age" value="22"></property>
+				</bean>
+
+				<ref bean="student2" />
+			</list>
+		</property>
+
+		<property name="keyValueMap">
+			<map>
+				<!-- her key,value ciftine entry denir -->
+				<entry key="key1">
+					<value>100</value>
+				</entry>
+				<entry key="key2" value="200" />
+			</map>
+
+		</property>
+
+
+	</bean>
+
+	<bean id="student2" class="_03collectioninjection_model.Student">
+		<property name="name" value="nazlisu" />
+		<property name="age" value="8" />
+
+	</bean>
+
+
+</beans> 
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- burada beanleri tanımlıyorum. spring bizim için objeleri oluşturacak. -->
+
+
+	<bean id="person1" class="_02constructorinjection_model.Person">
+		<!-- sırayla oldugu için direk value ile verebiliriz. -->
+		<constructor-arg value="Suleyman" />
+		<constructor-arg value="Can" />
+		<constructor-arg value="22" />
+	</bean>
+
+	<!--xmlns:c="http://www.springframework.org/schema/c" namespace kullanara 
+		olusturdum. -->
+	<bean id="person2" class="_02constructorinjection_model.Person"
+		c:name="Mehmet Ali" c:surname="Can" c:age="18" />
+
+	<!-- bu ornekte model'e adress class'ını ekledim, ref attribute deneyecegim. 
+		Person'a private Adress adress; ekledim. Birden fazla constructor olabilir. -->
+	<bean id="adress1" class="_02constructorinjection_model.Adress">
+		<constructor-arg value="Gaziantep" />
+		<constructor-arg value="Kolejtepe" />
+	</bean>
+
+	<bean id="person3" class="_02constructorinjection_model.Person">
+		<constructor-arg value="Nazlisu" />
+		<constructor-arg value="Can" />
+		<constructor-arg value="8" />
+		<constructor-arg name="adress" ref="adress1" />
+	</bean>
+
+	<!-- constructor confuse -->
+	<bean id="constructorConfuse1" class="_02constructorinjection_model.ConstructorConfuse">
+
+		<constructor-arg value="200" /> <!-- string calisir. -->
+	</bean>
+
+	<bean id="constructorConfuse2" class="_02constructorinjection_model.ConstructorConfuse">
+		<constructor-arg value="200" type="int"></constructor-arg>
+	</bean>
+
+</beans> 
+

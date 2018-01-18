@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- burada beanleri tanımlıyorum. spring bizim için objeleri oluşturacak. -->
+
+	<bean id="emp1" class="_01setterinjection_model.Employee">
+		<!-- name ilgili property degeri olacak. -->
+		<!-- setter injection -->
+		<property name="name" value="Suleyman" />
+		<property name="surname" value="Can" />
+		<property name="salary" value="5000" />
+		<property name="age" value="22" />
+	</bean>
+
+	<bean id="emp2" class="_01setterinjection_model.Employee">
+		<!-- birden fazla ekleyebiliriz. -->
+		<property name="name" value="Mehmet Ali" />
+		<property name="surname" value="Can" />
+		<property name="salary" value="5000" />
+		<property name="age" value="18" />
+	</bean>
+
+
+	<!-- baska bir yol olarak namespace ekledim (http://www.springframework.org/schema/p) -->
+	<bean id="emp3" class="_01setterinjection_model.Employee" p:name="Nazlisu"
+		p:surname="Can" p:salary="5000" p:age="8" />
+
+
+	<!-- ref attribute, bir bean'ı diger bean'e inject etme. -->
+	<!-- employee class'ında gidip Department ekliyorum. -->
+	<bean id="dept1" class="_01setterinjection_model.Department">
+		<property name="deptName" value="IT" />
+		<property name="location" value="Istanbul" />
+	</bean>
+
+	<bean id="emp4" class="_01setterinjection_model.Employee">
+		<property name="name" value="Kıymet" />
+		<property name="surname" value="Can" />
+		<property name="salary" value="10000" />
+		<property name="age" value="44" />
+		<property name="department" ref="dept1" />
+	</bean>
+
+</beans> 
+
