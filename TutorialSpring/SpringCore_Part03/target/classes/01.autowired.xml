@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+	<!-- scan yapabilmesi icin context annotation config ya da context scan 
+		tagini eklemeliyiz. beanleri kendimiz verdigimiz icin annotation config'i 
+		eklememiz yeterli olacaktır. context annotation config aktifasyon yapmaktadır. 
+		bu annotation spring'e @Autowired, @Required, @PostConstruct gibi anotationları 
+		aktif hale getir, der. -->
+
+
+	<context:annotation-config />
+
+	<bean id="emp1" class="_01autowired.model.Employee">
+		<property name="name" value="Süleyman" />
+		<property name="surname" value="Can" />
+	</bean>
+
+	<bean id="adress1" class="_01autowired.model.Adress">
+		<property name="city" value="Gaziantep" />
+		<property name="country" value="Turkey" />
+	</bean>
+
+	<!-- @Qualifier annotationu ile Spring'e hangi bean'i autowired isleminde 
+		kullanacagini belirtiriz. belirtmezsek NoUniqueDefinitionException aliriz. -->
+	<bean id="adress2" class="_01autowired.model.Adress">
+		<property name="city" value="Kilis" />
+		<property name="country" value="Turkey" />
+	</bean>
+
+</beans> 
+
