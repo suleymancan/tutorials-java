@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd ">
+
+	<!-- ilgili namespaceleri ekledim. -->
+
+	<bean id="employeeService" class="_04aspectj.service.EmployeeService" />
+	<bean id="auditServiceAspectId" class="_04aspectj.service.AuditServiceAspect" />
+
+	<aop:config>
+
+		<!-- birden fazla aop:aspect tanımlanabilir. security olaylarında kullanılabilir. -->
+		<aop:aspect id="myaspect" ref="auditServiceAspectId">
+
+			<!-- ismi saveEmployee olan metotdan önce logBefore çalışacak. -->
+			<aop:pointcut expression="execution(* *.saveEmployee(..))"
+				id="pointCutBeforeId" />
+			<aop:before method="logBefore" pointcut-ref="pointCutBeforeId" />
+
+			<aop:pointcut expression="execution(* *.updateEmployee(..))"
+				id="pointCutAfterId" />
+			<aop:after method="logAfter" pointcut-ref="pointCutAfterId" />
+
+			<aop:pointcut expression="execution(* *.getEmployeeId(..))"
+				id="pointCutAfterReturningId" />
+			<aop:after-returning method="logAfterReturning"
+				returning="resultValue" pointcut-ref="pointCutAfterReturningId" />
+
+
+
+			<aop:pointcut expression="execution(* *.deleteEmployee(..))"
+				id="pointCutAfterThrowingId" />
+			<aop:after-throwing method="logAfterThrowing"
+				throwing="thrownException" pointcut-ref="pointCutAfterThrowingId" />
+
+			<aop:pointcut expression="execution(* *.getAllEmployees(..))"
+				id="pointCutAround" />
+			<aop:around method="logAround" pointcut-ref="pointCutAround" />
+
+
+		</aop:aspect>
+	</aop:config>
+
+</beans>
