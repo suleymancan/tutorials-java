@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        ">
+
+	<!-- xml yaklasiminda MAPPING Olayı iki yaksalım aynı anda kullanılmaz. 
+		test icin biri yorum satırı halinde olmalıdır. -->
+	<!-- yontem1: BeanNameUrlHandlerMapping tek tek controller'ları tanımlayacagiz. 
+		<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> 
+		<bean name="/page1" class="_01controller.Page1Controller"/> -->
+
+	<!-- baska bir yontem: SimpleUrlHandlerMapping 
+	<bean name="page1Controller" class="_01controller.Page1Controller" />
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		setter injection 
+		<property name="mappings">
+			<props>
+				<prop key="/page1">page1Controller</prop>
+				<prop key="/page1Admin">page1Controller</prop>
+				 birden fazla url'e bind edebiliriz. 
+
+			</props>
+		</property>
+
+	</bean>
+-->
+
+	 <!-- return string ve modelAndView ornegi icin contextComponentScan kullanmalıyım. -->
+ <context:component-scan base-package="_02controller, _03controller"></context:component-scan>
+ 
+ <mvc:annotation-driven enable-matrix-variables="true"/>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+
+</beans>
