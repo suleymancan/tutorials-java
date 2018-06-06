@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<employees>
+    <employee>
+        <ssn>27</ssn>
+        <firstname>Süleyman</firstname>
+        <lastname>Can</lastname>
+        <role>Software Engineer</role>
+        <salary>1000</salary>
+    </employee>
+    <employee>
+        <ssn>28</ssn>
+        <firstname>Nazlisu</firstname>
+        <lastname>Can</lastname>
+        <role>Software Engineer</role>
+        <salary>2000</salary>
+    </employee>
+
+</employees>
