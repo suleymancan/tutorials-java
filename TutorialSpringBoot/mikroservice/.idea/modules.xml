@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../animal-service/animal-service.iml" filepath="$PROJECT_DIR$/../animal-service/animal-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/../api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../book-service/book-service.iml" filepath="$PROJECT_DIR$/../book-service/book-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../service-registry/service-registry.iml" filepath="$PROJECT_DIR$/../service-registry/service-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-app/store-app.iml" filepath="$PROJECT_DIR$/store-app/store-app.iml" />
+    </modules>
+  </component>
+</project>

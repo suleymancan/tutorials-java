@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: api-gateway
+zuul:
+  prefix: /api
+  routes:
+    books:
+      path: /books/**
+      serviceId: book-service
+    animals:
+        path: /animals/**
+        serviceId: animal-service
+eureka:
+  client:
+    register-with-eureka: false
+
+
